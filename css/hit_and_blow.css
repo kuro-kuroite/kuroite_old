@@ -1,0 +1,36 @@
+
+html{
+  margin: 20px;
+  background: #eeeeee;
+  color: 333333;
+}
+body,div,ul,li,ol,h1,h2,h3,h4,h5,h6{
+    margin:0;
+    padding:0;
+    font-size:15px;
+    font-family: "Arial";
+}
+body{
+  margin-left: 100px;
+}
+h1{
+  margin-top:  20px;
+  margin-bottom: 20px;
+  font-size: 26px;
+}
+h2{
+  font-size: 22px;
+}
+p{
+  margin: 0;
+}
+div{
+  margin: 10px;
+}
+ul,ol{
+  margin-left: 30px;
+}
+img{
+  width: 180px;
+  margin-right: 10px;
+}

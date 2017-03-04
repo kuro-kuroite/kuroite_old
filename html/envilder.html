@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>envilder | Kuroite</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/custom.css">
+  </head>
+  <body>
+    <article class="body">
+      <header>
+        <h1><a href="./index.html"><img src="../images/logo.png" alt="Kuroite" width="100" height="100">Kuroite</a></h1>
+        <nav>
+          <!-- 今回は空白 -->
+        </nav>
+      </header>
+      <h1>envilderの紹介</h1>
+      <aside class="contents">
+        <h1>目次</h1>
+        <ul>
+          <li><a href="#describe">名称説明</a></li>
+          <li><a href="#language">使用言語</a></li>
+          <li><a href="#summary">概要</a></li>
+          <li><a href="#example">動作例</a></li>
+          <li><a href="#points">おすすめな点</a></li>
+          <li><a href="#usage">使用方法</a></li>
+          <li><a href="#environment">実行環境</a></li>
+          <li><a href="#cause">制作のきっかけ</a></li>
+          <li><a href="#specification">現在の仕様</a></li>
+          <li><a href="#tasks">今後の展望・課題</a></li>
+          <li><a href="#finally">最後に</a></li>
+          <li><a href="#reference">参考サイト</a></li>
+        </ul>
+      </aside>
+      <article class="envilder">
+        <h1>envilder</h1>
+        <section>
+          <h1 id="describe">名称説明</h1>
+          <p>builder + environment = env <span style="text-decoration:line-through;">bu</span>ilder</p>
+        </section>
+        <section>
+          <h1 id="language">使用言語</h1>
+          <p>PowerShell</p>
+        </section>
+        <section>
+          <h1 id="summary">概要</h1>
+          <p>ダブルクリックで，環境構築の自動化を補助するツール．</p>
+        </section>
+        <section>
+          <h1 id="example">動作例</h1>
+          <section>
+            <h1>開発環境を構築する前</h1>
+            <img src="../images/before_env_no_username.png" alt="開発環境が入っていないことを示す写真">
+            <p>
+              現段階では，PythonとAtomがインストールされていない．
+            </p>
+            <h1>envilderによる環境構築</h1>
+            <p>
+              <a href="#usage">使用方法</a>に書かれたとおりに実行する．
+            </p>
+            <h1>実行許可画面</h1>
+            <img src="../images/UAC_Dialog_yes.png" alt="UAC Dialog画面の写真">
+            <p>
+              管理者権限で実行することを許可する．
+            </p>
+            <h1>開発環境を構築した後</h1>
+            <img src="../images/after_env_no_username.png" alt="開発環境が入ったことを示す写真">
+            <p>
+              envilderを実行した結果，PythonとAtomがインストールされている．
+            </p>
+          </section>
+          <p>このスクリプトは，3つの設定と1回のダブルクリックで，ソフトウェアのインストールを補助できる．</p>
+        </section>
+        <section>
+          <h1 id="points">おすすめな点</h1>
+          <p>
+            通常Windowsは，ソフトのインストール手順として，
+            <ul>
+              <li>公式サイトAを訪問</li>
+              <li>Windowsインストーラーをダウンロード</li>
+              <li>インストーラーを起動</li>
+              <br>
+              <li>公式サイトBを訪問</li>
+              <li></li>
+              <li></li>
+            </ul>
+            とソフトの数だけ繰り返す必要がある．
+          </p>
+          <p>
+            envilderがあれば,
+            <ul>
+              <li>envilderをダウンロードする</li>
+              <li>3か所設定をする</li>
+              <ul>
+                <li>必須</li>
+                  <ul>
+                    <li>インストールするソフトを列挙</li>
+                  </ul>
+                <li>任意</li>
+                  <ul>
+                    <li>インストールするソフトに関係するPathを列挙</li>
+                    <li>起動手順を列挙</li>
+                  </ul>
+              </ul>
+              <li><strong>build_environment</strong>をダブルクリック</li>
+            </ul>
+            を1回だけ行えばよい.
+          </p>
+          <p>
+            メリットとしては，以下の項目が挙げられる．
+            <ul>
+              <li>バージョン指定が可能</li>
+                <ul>
+                  <li>USBにインストーラーをダウンロードしておく方法と異なり，常に最新版が使用できる</li>
+                  <li>バージョンを指定しておけば，そのバージョンのインストールも出来る</li>
+                  <li>インストールの許可をするYesの回数が1回に減る</li>
+                </ul>
+              <li>1度初期設定をすれば，何度でもダブルクリック1回で同じ環境に出来る</li>
+                <ul>
+                  <li>OSを初期化したとき</li>
+                  <li>OSをクラッシュしてしまったとき</li>
+                  <li>学校PCのような，シャットダウンで初期状態に戻る仕様のとき</li>
+                </ul>
+              <li>インストールしたソフトを一斉にアップデート可能</li>
+            </ul>
+          </p>
+        </section>
+        <section>
+          <h1 id="usage">使用方法</h1>
+          <p>
+            <ul>
+              <li>以下のように設定ファイルを書き直す(readme.mdから抜粋)．</li>
+              <pre><blockquote>
+* envilder\config\scripts.config
+  + txt形式
+    起動させたいスクリプトを下記の通りに入れてください
+      - envilder(root)からの相対パス
+      - 1つのスクリプトファイルにつき1行
+
+* envilder\config\packages.config
+  + xml形式
+    <packages>
+      <package id="package_name" />
+    </packages>
+
+    - package_name にはインストールしたいパッケージ名をいれてください
+
+    - インストールしたいパッケージ
+    [パッケージサイト](https://chocolatey.org/packages)からお探しください
+
+* envilder\config\pathes.config
+  + xml形式
+    <package>
+      <path id="path\to\file" />
+    </package>
+
+    - path\to\file には環境変数のPathに追加したいpathをいれてください
+                </blockquote></pre>
+                <li><strong>build_environment</strong>
+                をダブルクリックで実行する．
+                  <ul>
+                    <li>設定ファイルで指定したものをもとに実行</li>
+                  </ul>
+                </li>
+            </ul>
+          </p>
+        </section>
+        <section>
+          <h1 id="environment">実行環境</h1>
+          <p>
+            envilderは，以下の環境で動作する．
+            <ul>
+              <li>envilderの依存ソフト</li>
+              <ul>
+                <li>Command prompt</li>
+                <li>Windows PowerShell</li>
+                <li>Chocolatey</li>
+              </ul>
+              <li>開発動作環境</li>
+              <ul>
+                <li>管理者権限</li>
+                <li>OS : Windows 10 Pro (ver. 1511)</li>
+                <li>システム : x64</li>
+                <li>メモリ : 8.00 GB</li>
+              </ul>
+              <li>必須動作環境</li>
+              <ul>
+                <li>管理者権限</li>
+                <ul>
+                  <li>ソフトのインストールで必要</li>
+                </ul>
+                <li>Windows 8 以上</li>
+                <ul>
+                  <li>今後確認予定</li>
+                </ul>
+                <li>Command prompt と PowerShell のpathが通っている</li>
+                <li>Internet 接続</li>
+              </ul>
+            </ul>
+          </p>
+        </section>
+        <section>
+          <h1 id="cause">制作のきっかけ</h1>
+          <p>
+            生活をするうえで，下記理由から毎回ソフトのインストールを手動で行っていたので，何とか自動化できないかと考えていた．
+            <ul>
+              <li>学校のPCはシャットダウンをすると初期設定に戻るので，毎回環境を構築しなければならなかったから.</li>
+              <li>家からNotePCを持ち込むとき，かさばる・重いといった手間が嫌だったから.</li>
+              <li>NotePCで，Windows OSを1度の自主初期化，2度の強制クラッシュした経験があり，そのたびに毎回毎回ソフトのインストールをして，開発環境を構築するのが大変だったから.</li>
+              <li>学校PCのPathは，一部が""で囲われている項目があり
+                <ul>
+                  <li>SETX /M PATH "%PATH%;C:\path\to\file"</li>
+                </ul>
+                でPathの追加が出来なかったので，手動でPathを追加していたから.</li>
+            </ul>
+            今回ちょうどよい機会だと思い，開発を進める前にSpecial Thanksの友人を誘って2人で「envilder」を制作することにした．
+          </p>
+        </section>
+        <section>
+          <h1 id="specification">現在の仕様</h1>
+          <p>
+            <ul>
+              <li>α版であった，ソフトのインストール機能の自動化補助を策定した．</li>
+              <li>β版であった，α版の機能の細分化や，Pathの追加，任意scriptの順番変更の機能を策定した．</li>
+              <li>具体的にα，β版は，3つの設定ファイルを編集することで
+                <ul>
+                  <li>複数ソフトのインストール</li>
+                  <li>複数Pathの追加</li>
+                  <li>複数スクリプトの実行</li>
+                  任意のscriptを自作して，config\scripts.configに追加
+                </ul>
+                自動化が出来ている.</li>
+            </ul>
+          </p>
+        </section>
+        <section>
+          <h1 id="tasks">今後の展望・課題</h1>
+          <p>
+            <ul>
+              <li>windows の動作環境確認．</li>
+              <li>chocolateyで入らないものを手動で引っ張ってくるshellscriptを書く．</li>
+                <ul>
+                  <li>インストーラー固有のscriptを実行するDirectory treeの策定</li>
+                  <li>インストーラーのURIからchocolatey以外の手段でインストールする自動化</li>
+                </ul>
+              <li>ソフトのプラグインを引っ張ってくるshellscriptを設置する．</li>
+                <ul>
+                  <li>ソフト固有のscriptを実行するDirectory treeの策定</li>
+                  <li>Atomであれば，apm install file-icons などのコマンド</li>
+                </ul>
+              <li>ソフトの初期設定が記述されている部分を変更するshellscriptを書き，
+                <ul>
+                  <li>ソフト固有の設定を変更・上書きするためのscriptを実行するDirectory treeの策定</li>
+                  <li>~/.atom</li>
+                  <li>~/.bash_profile</li>
+                </ul>
+              中身を上書きする．</li>
+              <li>開発環境構築後に，起動しておきたいものを起動させておくshellscriptを書き
+                <ul>
+                  <li>user固有のscriptを実行するDirectory treeの策定</li>
+                  <li>インストール完了後にPowerShellを開いている状態にしたいなど</li>
+                </ul>
+              最終的には，1回のダブルクリックで全ての工程が終了出来るようにしていく.</li>
+              <li>実行時に，PowerShell windowが出ないようにする．</li>
+              <li>設定ファイル以外のPowerShellをexeといったバイナリ形式に変更する．</li>
+              <li>実行ファイルのiconを変更する.</li>
+              <li>pathの追加時に少しバグが見られたので，バグ取りをする．</li>
+              <li>追加したPathをアンインストールの時に削除する．</li>
+            </ul>
+          </p>
+        </section>
+        <section>
+          <h1 id="finally">最後に</h1>
+          <p>
+            <ul>
+              <li>Chocolateyを教えてくれたblogサイトの人々や，制作を共同で行ってくれた友人，Chocolateyソフトのおかげでこのようなツールを作ることが出来ました．</li>
+              <li>このツールの掲載写真は，学校で制作しました．</li>
+              <li>このように協力してくださり，真に感謝申し上げます．</li>
+              <li>なお，このツールはあくまで個人使用目的で制作しました．</li>
+              <li>著作権の関係などがあったので，ツールの公開は見送りました．このPageをもとにぜひ自分たちの自動化ツールを作ってみてはいかがでしょうか．</li>
+            </ul>
+          </p>
+        </section>
+        <section>
+          <h1 id="reference">参考サイト</h1>
+          <p>
+            <ul>
+              <li><a href="http://cartman0.hatenablog.com/entry/2015/10/09/211022">Windows での開発環境構築は、Chocolatey を使おう！</a></li>
+              <li><a href="https://chocolatey.org/">The package manager for Windows</a></li>
+            </ul>
+          </p>
+        </section>
+      </article>
+      <aside class="nav?">
+        <nav>
+          <ul>
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./hit_and_blow.html">HitAndBlow</a></li>
+            <li><a href="./slg.html">戦術SLG</a></li>
+            <li><a href="./labyrinth.html">Labyrinth</a></li>
+          </ul>
+        </nav>
+      </aside>
+      <footer>
+        <nav>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="./about.html">About</a></li>
+          </ul>
+        </nav>
+        <small>Copyright 2017 kt kh All Rights Reserved.</small></footer>
+    </article>
+  </body>
+</html>

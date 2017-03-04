@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>AndroidアプリHitAndBlow</title>
+    <link rel="stylesheet" type="text/css" href="../css/hit_and_blow.css">
+  </head>
+  <body>
+    <h1>AndroidアプリHitAndBlowについて</h1>
+    <div>
+      <h2>HitAndBlowとは</h2>
+      <p>HitAndBlowは適当に作られた数字を当てるゲームです。作られる数字は</p>
+      <ul>
+        <li>4桁の数字である(例:○1029,10298)</li>
+        <li>0～9の10個のアラビア数字がつかわれる(例:○2731,×MMDCCXXXI）</li>
+        <li>おなじ数字は2回以上つかわれない(例:9456,×9459)</li>
+        <li>0からはじまることもある(例:○0581)</li>
+      </ul>
+      <p>という条件のもとに作られます。</p>
+      <p>そのようにして作られた数字を予想すると作られた数字と予想した数字とで</p>
+      <ul>
+        <li>位置と数字が両方ともあっている数の個数(Hit)</li>
+        <li>位置は違うが数字があっている数の個数(Blow)</li>
+      </ul>
+      <p>の二つが返されます。それらをヒントに次の数を予想します。作られた数と予想した数がぴったり合えばゲームクリアです。</p>
+    </div>
+    <div>
+      <h2>HitAndBlowを使ってみる</h2>
+      <div>
+        <img src="../images/screenshot (1).jpg" alt="screenshot(1)"style="float:left">
+        <img src="../images/screenshot (2).jpg" alt="screenshot(2)">
+        <p>画面を開くと上の画面がでてきます。「桁数を指定」のチェックボックスにチェックをいれると作られる数の桁数を4から自由に変えることができるようになります。「文字数を指定」のチェックボックスにチェックを入れると作られる数字を構成する文字の個数を変えることができるようになります。桁数と文字数の最小値は1をとり、桁数の最大値は文字数と同じで文字数の最大値は62となっています。文字数が1～10の範囲ならば作られるものは数字になりますが11から小文字のアルファベットが、37からは大文字のアルファベットが導入されるので作られるものは文字列になります。</p>
+      </div>
+      <div>
+        <img src="../images/screenshot (3).jpg"
+        alt="screenshot(3)"style="float:left">
+        <img src="../images/screenshot (4).jpg"
+        alt="screenshot(4)"style="float:left">
+        <img src="../images/screenshot (5).jpg"
+        alt="screenshot(5)">
+        <p>GAMESTARTというボタンを押すと上の画面に移ります。「数字を入力」に数字(文字列)をいれ、「GO」と書いてあるボタンを押してゲームを進めていきます。右側の「X桁」は現在入力されている桁数を表しています。この文字の色は入力されている数字(文字列)が最初に作られる数字(文字列)の条件に合っているか否かを表します。赤色ではなく青色でないとGOボタンを押してもHitとBlowを示さずゲームが進みません。作られた数字(文字列)と入力した数字(文字列)が同じになればゲームクリアです。</p>
+      </div>
+    </div>
+  </body>
+</html>

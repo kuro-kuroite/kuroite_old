@@ -21,7 +21,13 @@ module.exports = {
   # 他にもhtmlやcssを読み込む必要がある場合はここへ追記
   module:
     rules: [
-      { test: /\.coffee$/, use: "coffee-loader" }
+      { test: /\.coffee$/, use: "coffee-loader" },
+      { test: /\.scss$/,
+        use: ["sytle-loader",
+              "sass-loader",
+              "css-loader",
+             ]
+      }
     ]
 
   # webpack用の各プラグイン

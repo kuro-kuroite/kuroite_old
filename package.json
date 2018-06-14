@@ -1,0 +1,19 @@
+{
+  "name": "kuroite",
+  "version": "1.0.0",
+  "description": "this is portforio for static site",
+  "main": "index.js",
+  "scripts": {
+    "test": "bundle"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kuro-kuroite/kuroite.git"
+  },
+  "author": "kuro-kuroite",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kuro-kuroite/kuroite/issues"
+  },
+  "homepage": "https://github.com/kuro-kuroite/kuroite#readme"
+}

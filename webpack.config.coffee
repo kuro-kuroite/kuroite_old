@@ -11,7 +11,7 @@ module.exports = {
   # entryポイントを指定、複数指定できます
   entry:
     # index: "./src/index.coffee"
-    sytle: "./src/style.coffee"
+    style: "./src/style.coffee"
 
   # 出力先の設定
   output:

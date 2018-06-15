@@ -39,6 +39,20 @@ module.exports = {
           { loader: "sass-loader" }
         ])
       },
+      {
+        # 対象となるファイルの拡張子
+        test: /\.(gif|png|jpg|eot|wof|woff|ttf|svg)$/,
+        # 画像を埋め込まず任意のフォルダに保存する
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[path][name].[ext]',
+              outputPath: 'assets/images/'
+            }
+          }
+        ]
+      },
     ]
 
   # webpack用の各プラグイン

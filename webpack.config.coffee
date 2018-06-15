@@ -1,12 +1,12 @@
 webpack = require "webpack"
 path = require "path"
+ExtractTextPlugin = require "extract-text-webpack-plugin"
 
-
-# MODE = 'development'
+MODE = 'development'
 
 module.exports = {
 
-  # mode: MODE,
+  mode: MODE,
 
   # entryポイントを指定、複数指定できます
   entry:
@@ -34,16 +34,16 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: [
-          { loader: "style-loader" },
+        use: ExtractTextPlugin.extract([
           { loader: "css-loader" },
           { loader: "sass-loader" }
-        ]
+        ])
       },
     ]
 
   # webpack用の各プラグイン
   plugins: [
+    new ExtractTextPlugin('style.css'),
   ]
 
   # target: 'node'

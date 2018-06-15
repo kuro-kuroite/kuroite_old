@@ -57,7 +57,7 @@ module.exports = {
 
   # webpack用の各プラグイン
   plugins: [
-    new ExtractTextPlugin('style.css'),
+    new ExtractTextPlugin('[name].css'),
   ]
 
   # target: 'node'

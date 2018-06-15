@@ -1,6 +1,8 @@
-@import 'compass'
+@import "~compass-mixins/lib/compass";
 
 .c-btn {
-  box-sizing()
-  
+  // @include box-sizing();
+  @include box-sizing(border-box);
+  @include border-radius();
+  background-color: red;
 }
